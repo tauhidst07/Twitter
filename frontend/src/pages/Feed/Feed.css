@@ -1,0 +1,25 @@
+h1{
+    margin-bottom: 100px;
+}  
+h2{
+    text-align: center;
+}
+
+.feed{ 
+    flex: 0.7;
+    overflow-y: scroll;
+} 
+.feed::-webkit-scrollbar{
+    display: none;
+} 
+
+.hamburger_menu{
+    display:none !important;
+    cursor: pointer; 
+} 
+
+@media screen and (max-width: 688px) {
+    .hamburger_menu {
+      display: block !important;
+    }
+  }

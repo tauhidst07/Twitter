@@ -1,0 +1,46 @@
+.subscription{
+    flex: 0.7; 
+    /* padding-top: 100px;  */
+    display: flex;  
+    flex-direction: column; 
+    align-items: center; 
+}  
+.subscriptionPage{
+    flex: 0.7;
+}
+
+.buttons{
+    display: flex; 
+    align-items: center;  
+    justify-content: space-between;
+    gap: 10px; 
+    background-color: rgb(232, 225, 225); 
+    border-radius: 20px;
+} 
+
+.cards{
+    display: flex;  
+    /* width: 50%; */
+    margin-top: 30px; 
+    gap: 100px;   
+/* border: 2px solid red; */
+}   
+
+.subs-btn{  
+  cursor: pointer; 
+  padding:10px 50px;
+  color:black; 
+  background-color: rgb(232, 225, 225);
+  font-size: 20px;  
+  border-radius: 20px;
+} 
+.clicked{
+    background-color: black; 
+    color: white;
+} 
+
+@media screen  and (max-width:688px){
+    .cards{
+        flex-direction: column;
+    }
+}
