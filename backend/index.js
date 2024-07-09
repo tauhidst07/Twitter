@@ -103,7 +103,7 @@ const otpCollection = client.db('database').collection('otps');
         const allowedStartTime = 9;  
         const allowedEndTime = 17;   
         const currentHour = new Date().getHours(); 
-        console.log("current hour")
+        console.log("current hour",currentHour)
 
         if (currentHour < allowedStartTime || currentHour >= allowedEndTime) {
           return res.send({ message: 'Access denied' });
