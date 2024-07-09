@@ -60,7 +60,7 @@ const Tweetbox = () => {
             username:username, 
             email:user.email
         }  
-        fetch('http://localhost:4000/post',{
+        fetch('https://twitter-backend-42z4.onrender.com/post',{
             method:"POST", 
             headers:{
                 'content-type':'application/json'

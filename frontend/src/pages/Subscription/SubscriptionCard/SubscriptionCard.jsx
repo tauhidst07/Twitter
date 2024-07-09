@@ -11,7 +11,7 @@ const SubscriptionCard = ({info,type}) => {
   const email = user?.email;
   const handlePayment = async (plan) => {
     try {
-      const orderRes = await axios.post('http://localhost:4000/create-order', {
+      const orderRes = await axios.post('https://twitter-backend-42z4.onrender.com/create-order', {
         amount: plan.price,
         currency: 'INR',
       });
@@ -25,7 +25,7 @@ const SubscriptionCard = ({info,type}) => {
         description: 'Subscription Plan',
         order_id,
         handler: async (response) => {
-          const paymentRes = await axios.post('http://localhost:4000/verify-payment', {
+          const paymentRes = await axios.post('https://twitter-backend-42z4.onrender.com/verify-payment', {
             email,
             order_id,
             payment_id: response.razorpay_payment_id,

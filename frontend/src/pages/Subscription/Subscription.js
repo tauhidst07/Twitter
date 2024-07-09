@@ -13,7 +13,7 @@ const Subscription = () => {
     setClickedButton(index);
   }
   const fetchSubscriptionInfo = async () => {
-    const res = await axios.get("http://localhost:4000/subscription-options");
+    const res = await axios.get("https://twitter-backend-42z4.onrender.com/subscription-options");
     setSubscriptionInfo(res.data);
     //  console.log("subs Info ",subscriptionInfo)
   }

@@ -52,7 +52,7 @@ const Login = () => {
           setDeviceInfo(deviceInfo); 
           try { 
             
-            const response = await axios.post('http://localhost:4000/login', {
+            const response = await axios.post('https://twitter-backend-42z4.onrender.com/login', {
               email,
               deviceInfo
             }); 
@@ -84,7 +84,7 @@ const Login = () => {
       const handleOtpSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:4000/verify-otp', {
+          const response = await axios.post('https://twitter-backend-42z4.onrender.com/verify-otp', {
             email,
             otp,
             deviceInfo

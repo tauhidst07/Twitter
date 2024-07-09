@@ -23,7 +23,7 @@ const Language = ({userLanguage}) => {
    
   const handleSendOtp = async () => {
     try {
-      await axios.post('http://localhost:4000/language/send-otp', { email });
+      await axios.post('https://twitter-backend-42z4.onrender.com/language/send-otp', { email });
       setIsOtpSent(true);
       toast.success('OTP sent to your email');
     } catch (error) {
@@ -32,7 +32,7 @@ const Language = ({userLanguage}) => {
   };
   const handleVerifyOtp = async () => {
     try {
-      await axios.post('http://localhost:4000/language/verify-otp', { email, otp, language });
+      await axios.post('https://twitter-backend-42z4.onrender.com/language/verify-otp', { email, otp, language });
       updateTheme(language);
       toast.success('Theme changed successfully based on language'); 
       setIsOtpSent(false)

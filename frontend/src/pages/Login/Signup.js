@@ -46,7 +46,7 @@ const Signup = () => {
               email:email,
         } 
 
-       axios.post("http://localhost:4000/register",user)
+       axios.post("https://twitter-backend-42z4.onrender.com/register",user)
        .then((res)=>{
           console.log("registration response: ",res)
        }) 
@@ -71,7 +71,7 @@ const Signup = () => {
             email:res?.user?.email,
       } 
 
-     axios.post("http://localhost:4000/register",user)
+     axios.post("https://twitter-backend-42z4.onrender.com/register",user)
      .then((res)=>{
         console.log("registration response: ",res)
      }) 

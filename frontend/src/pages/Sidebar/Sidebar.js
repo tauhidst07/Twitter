@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Sidebar.css'
 import TwitterIcon from "@mui/icons-material/Twitter";
 import HomeIcon from "@mui/icons-material/Home";
@@ -24,7 +24,11 @@ const Sidebar = ({ handleLogout, user,isVisible,toggleSidebar}) => {
     const openMenu = Boolean(anchorEl)
     const [loggedInUser] = useLoggedInUser();
     const userProfileImage = loggedInUser.profileImage ? (loggedInUser.profileImage) : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
-    const customUsername = user?.email.split("@")[0];
+    const customUsername = user?.email.split("@")[0]; 
+    useEffect(()=>{
+        console.log("in sidebar ",loggedInUser); 
+
+    },[])
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget)
     }

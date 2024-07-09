@@ -17,7 +17,7 @@ const MainPage = ({ user }) => {
     const [posts,setPosts] = useState([]);  
     const [isLoading,setIsLoading] = useState(false)
     const fetchPosts = async ()=>{
-     const res = await axios.get(`http://localhost:4000/userPost?email=${user?.email}`) 
+     const res = await axios.get(`https://twitter-backend-42z4.onrender.com/userPost?email=${user?.email}`) 
       setPosts(res?.data)
     }
     useEffect(()=>{
@@ -37,7 +37,7 @@ const MainPage = ({ user }) => {
             coverImage: url,
         }
           if (url) {
-           axios.patch(`http://localhost:4000/userUpdates/${user?.email}`,userCoverImage)
+           axios.patch(`https://twitter-backend-42z4.onrender.com/userUpdates/${user?.email}`,userCoverImage)
            .then((res)=>{ 
             setIsLoading(false) 
             console.log("cover upload res ",res); 
@@ -69,7 +69,7 @@ const MainPage = ({ user }) => {
        
         setIsLoading(false) 
           if (url) {
-           axios.patch(`http://localhost:4000/userUpdates/${user?.email}`,userProfileImage)
+           axios.patch(`https://twitter-backend-42z4.onrender.com/userUpdates/${user?.email}`,userProfileImage)
            .then((res)=>{
             console.log(res); 
            })
