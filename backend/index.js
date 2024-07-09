@@ -97,11 +97,13 @@ const otpCollection = client.db('database').collection('otps');
     }; 
     // Middleware to check time-based access for mobile devices
     const checkTimeAccess = (req, res, next) => { 
-      console.log("req info in check time: ",req)
-      if (req.isMobile) {
+      // console.log("req info in check time: ",req)
+      if (req.isMobile) { 
+        console.log("is mobile true")
         const allowedStartTime = 9;  
         const allowedEndTime = 17;   
-        const currentHour = new Date().getHours();
+        const currentHour = new Date().getHours(); 
+        console.log("current hour")
 
         if (currentHour < allowedStartTime || currentHour >= allowedEndTime) {
           return res.send({ message: 'Access denied' });
