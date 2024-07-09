@@ -101,8 +101,10 @@ const otpCollection = client.db('database').collection('otps');
       if (req.isMobile) { 
         console.log("is mobile true")
         const allowedStartTime = 9;  
-        const allowedEndTime = 17;   
-        const currentHour = new Date().getHours(); 
+        const allowedEndTime = 17;  
+        // indian time zone  
+        const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false };
+        const currentHour = new Date().getHours(options); 
         console.log("current hour",currentHour)
 
         if (currentHour < allowedStartTime || currentHour >= allowedEndTime) {
