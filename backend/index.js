@@ -86,17 +86,21 @@ const otpCollection = client.db('database').collection('otps');
        res.send(result);
    })  
     // Middleware to detect mobile device
-    const detectMobileDevice = (req, res, next) => {
-      const userAgent = req.headers['user-agent'] || '';
-      const isMobile = /mobile/i.test(userAgent);  
-      req.isMobile = isMobile; 
+    const detectMobileDevice = (req, res, next) => {   
+     if(req.body.deviceInfo.deviceType === "Mobile"){
+       req.isMobile = true; 
+     } 
+     else{
+      req.isMobile=false;
+     }
       next();
     }; 
     // Middleware to check time-based access for mobile devices
-    const checkTimeAccess = (req, res, next) => {
+    const checkTimeAccess = (req, res, next) => { 
+      console.log("req info in check time: ",req)
       if (req.isMobile) {
-        const allowedStartTime = 9;  // 9 AM
-        const allowedEndTime = 17;   // 5 PM
+        const allowedStartTime = 9;  
+        const allowedEndTime = 17;   
         const currentHour = new Date().getHours();
 
         if (currentHour < allowedStartTime || currentHour >= allowedEndTime) {
