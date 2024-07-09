@@ -103,11 +103,12 @@ const otpCollection = client.db('database').collection('otps');
         const allowedStartTime = 9;  
         const allowedEndTime = 17;  
         // indian time zone  
+        const date = new Date();
         const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false };
-        const currentHour = new Date().getHours(options); 
-        console.log("current hour",currentHour)
-
-        if (currentHour < allowedStartTime || currentHour >= allowedEndTime) {
+        const formatter = new Intl.DateTimeFormat([], options);
+        const currentHourIST = formatter.formatToParts(date).find(part => part.type === 'hour').value;
+        console.log("current hour ist ",currentHourIST)
+        if (currentHourIST < allowedStartTime || currentHourIST >= allowedEndTime) {
           return res.send({ message: 'Access denied' });
         }
       }
