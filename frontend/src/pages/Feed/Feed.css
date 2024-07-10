@@ -7,7 +7,8 @@ h2{
 
 .feed{ 
     flex: 0.7;
-    overflow-y: scroll;
+    overflow-y: scroll; 
+    height: 100vh;
 } 
 .feed::-webkit-scrollbar{
     display: none;
@@ -21,5 +22,5 @@ h2{
 @media screen and (max-width: 688px) {
     .hamburger_menu {
       display: block !important;
-    }
+    } 
   }

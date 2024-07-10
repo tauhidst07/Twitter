@@ -10,7 +10,7 @@ const Feed = ({toggleSidebar,isVisible}) => {
    const fetchPosts = async ()=>{
     const res = await axios.get("https://twitter-backend-42z4.onrender.com/post") 
      setPosts(res?.data) 
-    //  console.log("posts :",posts)
+     console.log("posts :",posts)
    }
    useEffect(()=>{
     fetchPosts()
