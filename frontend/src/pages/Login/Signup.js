@@ -91,7 +91,7 @@ const Signup = () => {
     </div>
 
 
-    <div className="form-container">
+    <div className="form-container signup-container">
         <div className="form-box">
             <TwitterIcon className="Twittericon" style={{ color: "skyblue" }} />
 
