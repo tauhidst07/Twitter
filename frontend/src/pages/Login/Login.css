@@ -18,7 +18,9 @@
     align-items: center;  
  
 }
-
+ .signup-container{ 
+     margin-top:-100px;
+ }
 .form-box { 
     justify-content: left;
     align-items: inherit;
