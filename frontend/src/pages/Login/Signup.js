@@ -7,7 +7,8 @@ import GoogleButton from 'react-google-button'
 import { Link,useNavigate } from 'react-router-dom'; 
 import "./Login.css"
 import axios from 'axios';
-
+import 'react-toastify/dist/ReactToastify.css'; 
+import { toast } from 'react-toastify';
 const Signup = () => { 
     const [email , setEmail] = useState(""); 
     const [password, setPassword] = useState("");  
@@ -48,7 +49,10 @@ const Signup = () => {
 
        axios.post("https://twitter-backend-42z4.onrender.com/register",user)
        .then((res)=>{
-          console.log("registration response: ",res)
+          console.log("registration responsee: ",res) 
+          if(res?.data?.message ==="user already registered"){
+            toast.error(res.data.message);
+          }
        }) 
        .catch((err)=>{
         console.log("registration error: ",err);
@@ -105,21 +109,24 @@ const Signup = () => {
                     type="username"
                     placeholder="@username "
                     onChange={(e) => setUsername(e.target.value)} 
-                    value={username}
+                    value={username} 
+                    required
                 />
 
                 <input className="display-name" style={{ backgroudColor: "red" }}
                     type="name"
                     placeholder="Enter Full Name"
                     onChange={(e) => setName(e.target.value)} 
-                    value={name}
+                    value={name} 
+                    required
                 />
 
                 <input className="email"
                     type="email"
                     placeholder="Email address"
                     onChange={(e) => setEmail(e.target.value)} 
-                    email={email}
+                    email={email} 
+                    required
                 />
 
 
@@ -128,7 +135,8 @@ const Signup = () => {
                     type="password"
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)} 
-                    value={password}
+                    value={password} 
+                    required
                 />
 
 
