@@ -10,7 +10,7 @@ import auth from '../../../firebase.init';
 import 'react-toastify/dist/ReactToastify.css'; 
 import { toast } from 'react-toastify';
  
-const Tweetbox = () => {
+const Tweetbox = ({fetchPosts}) => {
     const [post, setPost] = useState("");
     const [imageURL, setImageURL] = useState("");  
     const [isLoading,setIsLoading] = useState(false)  
@@ -71,7 +71,8 @@ const Tweetbox = () => {
         .then((data)=>{ 
             console.log("post response: ",data);  
             if (data?.acknowledged){
-                toast.success("posted sucessfully")
+                toast.success("posted sucessfully") 
+                fetchPosts();
             }
             if(data?.message === "Post limit reached for today"){ 
                 const message = data.message+" subscribe to post more."
