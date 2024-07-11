@@ -80,7 +80,16 @@ const otpCollection = client.db('database').collection('otps');
   //register user 
 
    app.post('/register',async (req,res)=>{
-       const user = { ...req.body, subscriptionType: 'free', postLimit: 5, postsToday: 0, subscriptionEndDate: null };
+       // const user = { ...req.body, subscriptionType: 'free', postLimit: 5, postsToday: 0, subscriptionEndDate: null };
+       // const result = await userCollection.insertOne(user); 
+       // console.log("registration done ",result) 
+       // res.send(result); 
+       const user = { ...req.body, subscriptionType: 'free', postLimit: 5, postsToday: 0, subscriptionEndDate: null }; 
+       const email = user.email; 
+       const existingUser = await userCollection.findOne({ email}); 
+       if(existingUser){
+        return res.send({ message: 'user already registered' });
+       }
        const result = await userCollection.insertOne(user); 
        console.log("registration done ",result) 
        res.send(result);
