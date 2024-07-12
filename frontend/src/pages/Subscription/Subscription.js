@@ -7,50 +7,61 @@ import useLoggedInUser from '../../hooks/useLoggedInUser';
 const Subscription = () => {
 
   const [clickedButton, setClickedButton] = useState(2);
-  const [subscriptionInfo, setSubscriptionInfo] = useState(null); 
+  const [subscriptionInfo, setSubscriptionInfo] = useState(null);
   const [loggedInUser] = useLoggedInUser(); 
   const handleButtonClicked = (index) => {
     setClickedButton(index);
   }
   const fetchSubscriptionInfo = async () => {
-    const res = await axios.get("https://twitter-backend-42z4.onrender.com/subscription-options");
-    setSubscriptionInfo(res.data);
+    try {
+      const res = await axios.get("https://twitter-backend-42z4.onrender.com/subscription-options");
+      setSubscriptionInfo(res.data);
+    }
+    catch (err) {
+      console.log("error in fetching subscription infor", err)
+    }
     //  console.log("subs Info ",subscriptionInfo)
-  }
-  useEffect(() => {
-    fetchSubscriptionInfo();
-    console.log("logged in user ", loggedInUser)
-  }, [loggedInUser])
-  return ( 
-      <div className='subscriptionPage'> 
-      {
-        loggedInUser.subscriptionType !== "free" ? (
-          <div className="subscription">  
-                 <h1>Already Subscribed</h1> 
-                 <p>Your Subscription will end on {loggedInUser.subscriptionEndDate &&  loggedInUser?.subscriptionEndDate.split("T")[0]
-                   }</p>
-            </div>) :  (
-      <div className="subscription">
-        <h1>Upgrade to Premium</h1>
-        <div className="buttons">
-          <div className={`subs-btn ${clickedButton === 1 ? "clicked" : ""}`}
-            onClick={() => setClickedButton(1)}
-          >Annual</div>
-          <div className={`subs-btn ${clickedButton === 2 ? "clicked" : ""}`}
-            onClick={() => setClickedButton(2)}
-          >Monthly</div>
-        </div>
-        <div className="cards">
-          {subscriptionInfo &&
-            <SubscriptionCard info={clickedButton == 2 ? subscriptionInfo?.monthly : subscriptionInfo?.yearly} type={clickedButton === 2 ? 'monthly' : 'yearly'} />
-          }
-        </div> 
-     </div>    
-        )
-    }  
+  } 
 
-     </div>
-     
+  useEffect(() => {
+    fetchSubscriptionInfo();  
+  }, [loggedInUser])
+
+
+  return (
+      <div className='subscriptionPage'>
+        { 
+         Object.keys(loggedInUser).length > 0 && (
+          loggedInUser.subscriptionType !== "free" ? (
+            <div className="subscription">
+              <h1>Already Subscribed</h1>
+              <p>Your Subscription will end on {loggedInUser.subscriptionEndDate && loggedInUser?.subscriptionEndDate.split("T")[0]
+              }</p>
+            </div>) : (
+            <div className="subscription">
+              <h1>Upgrade to Premium</h1>
+              <div className="buttons">
+                <div className={`subs-btn ${clickedButton === 1 ? "clicked" : ""}`}
+                  onClick={() => setClickedButton(1)}
+                >Annual</div>
+                <div className={`subs-btn ${clickedButton === 2 ? "clicked" : ""}`}
+                  onClick={() => setClickedButton(2)}
+                >Monthly</div>
+              </div>
+              <div className="cards">
+                {subscriptionInfo &&
+                  <SubscriptionCard info={clickedButton == 2 ? subscriptionInfo?.monthly : subscriptionInfo?.yearly} type={clickedButton === 2 ? 'monthly' : 'yearly'} />
+                }
+              </div>
+            </div>
+          )
+        )
+        }
+
+      </div>
+    
+
+
   )
 }
 
