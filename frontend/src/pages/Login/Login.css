@@ -7,20 +7,41 @@
     width: 100vw; 
     min-height: 100vh; 
     overflow: hidden; 
-    background-color: #fff;
+    background-color: #fff;  
+    position: relative;
+}  
+.loader-box{ 
+    position: absolute;
+    display: flex; 
+    gap: 5px;
+} 
+.loader-box p{
+    font-size: 25px;
 }
+.loader {
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #000 #0000;
+    animation: l1 1s infinite;
+  }
+  @keyframes l1 {to{transform: rotate(.5turn)}}
 
 .form-container {
     flex: 1;
     padding: 50px;
     margin: 10px;
     /* margin-left: -50px; */
-    align-items: center;  
+    align-items: center;   
+    /* margin-top: -100px; */
+
  
+} 
+.signup-container{
+    margin-top: -100px;
 }
- .signup-container{ 
-     margin-top:-100px;
- }
+
 .form-box { 
     justify-content: left;
     align-items: inherit;
