@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
+import Loading from '../Loading';
 
 const Login = () => {
     
@@ -17,7 +18,8 @@ const Login = () => {
     const [password, setPassword] = useState(""); 
     const [otp, setOtp] = useState("");
     const [requiresOtp, setRequiresOtp] = useState(false);
-    const [deviceInfo, setDeviceInfo] = useState({}); 
+    const [deviceInfo, setDeviceInfo] = useState({});  
+    const [verifying,setVerifying] = useState(false)
     // const [error, setError] = useState('')   
     const navigate = useNavigate();
     const [
@@ -49,14 +51,16 @@ const Login = () => {
             ip: await getIpAddress(),  
             deviceType:getDeviceType(),
           };
-          setDeviceInfo(deviceInfo); 
+          setDeviceInfo(deviceInfo);  
+          setVerifying(true)
           try { 
             
             const response = await axios.post('https://twitter-backend-42z4.onrender.com/login', {
               email,
               deviceInfo
             }); 
-            console.log("login response ",response)  
+            console.log("login response ",response)   
+            setVerifying(false)
             if(response.data.message==="Access denied"){
               toast.error(" Mobile logins are only allowed between 9 AM and 5 PM.") 
               return
@@ -124,7 +128,8 @@ const Login = () => {
           <div className="image-container">
             <img className="image" src={twitterImg} alt="twitterImage" />
           </div>
-          <div className="form-container">
+          <div className="form-container"> 
+            { verifying &&<div className='loader-box'><p >Verifying </p><div className='loader'></div></div>}
             <div className="form-box">
               <TwitterIcon style={{ color: "skyblue" }} />
               <h2 className="heading">Happening now</h2>
