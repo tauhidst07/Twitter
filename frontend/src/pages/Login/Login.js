@@ -129,7 +129,7 @@ const Login = () => {
             <img className="image" src={twitterImg} alt="twitterImage" />
           </div>
           <div className="form-container"> 
-            { verifying &&<div className='loader-box'><p >Verifying </p><div className='loader'></div></div>}
+            { verifying &&<div className='loader-box'><p >Verifying </p><div className='small-loader'></div></div>}
             <div className="form-box">
               <TwitterIcon style={{ color: "skyblue" }} />
               <h2 className="heading">Happening now</h2>
