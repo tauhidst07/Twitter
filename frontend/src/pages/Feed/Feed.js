@@ -4,7 +4,6 @@ import Tweetbox from './Tweetbox/Tweetbox'
 import axios from 'axios';
 import Post from './Post/Post'; 
 import MenuIcon from '@mui/icons-material/Menu';  
-import Loading from '../Loading';
 
 const Feed = ({toggleSidebar,isVisible}) => { 
   const [posts,setPosts] = useState([]);  
@@ -38,7 +37,7 @@ const Feed = ({toggleSidebar,isVisible}) => {
       </div>
       <Tweetbox fetchPosts={fetchPosts}/> 
       { 
-      loading ? (<Loading/>):(
+      loading ? (<div className='feed-loader'><div className='loader'></div></div>):(
         posts.map((p)=>(
           <Post p={p} key={p._id} />
         )
