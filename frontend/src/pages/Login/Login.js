@@ -103,7 +103,22 @@ const Login = () => {
       };
     
     const handleGoogleSignIn = async()=>{  
-     signInWithGoogle();
+     const res = await signInWithGoogle()  
+      console.log("google sign in response",res?.user) 
+      
+      const  user = {
+          username:res?.user?.email.split("@")[0], 
+          name:res?.user?.displayName,
+          email:res?.user?.email,
+    } 
+
+   axios.post("https://twitter-backend-42z4.onrender.com/register",user)
+   .then((res)=>{
+      console.log("registration response: ",res)
+   }) 
+   .catch((err)=>{
+    console.log("registration error: ",err);
+   })
        
     }  
     const getDeviceType = () => {
